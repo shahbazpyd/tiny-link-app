@@ -23,6 +23,14 @@ app.use(express.static('public'));
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// --- Root Endpoint ---
+
+// Serve the main dashboard page for the root URL
+app.get('/', (req, res) => {
+    // This explicitly serves your main HTML file for the root path.
+    res.sendFile('index.html', { root: 'public' });
+});
+
 
 // --- Helper Functions ---
 
@@ -173,13 +181,6 @@ app.delete('/api/links/:code', async (req, res) => {
 });
 
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    console.log(`API Endpoints are ready to test at http://localhost:${PORT}/api/links`);
-    console.log(`Health Check at http://localhost:${PORT}/healthz`);
-});
-
 // 6. The Redirect Route (GET /:code) - CRUCIAL LOGIC ADDED HERE!
 // This MUST be the last route definition to ensure it doesn't conflict with API paths
 app.get('/:code', async (req, res) => {
@@ -211,4 +212,12 @@ app.get('/:code', async (req, res) => {
         // Fallback for any other server-side error
         res.status(500).send('Internal Server Error while processing link redirection.');
     }
+});
+
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`Dashboard available at http://localhost:${PORT}/`);
+    console.log(`Health Check at http://localhost:${PORT}/healthz`);
 });
