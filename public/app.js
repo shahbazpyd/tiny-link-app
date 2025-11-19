@@ -150,7 +150,7 @@ const createLinksTable = (links) => {
                 <td data-label="Created At">${createdDate}</td>
                 <td data-label="Last Clicked">${lastClicked}</td>
                 <td data-label="Actions">
-                    <a href="/code/${link.shortCode}" class="btn btn-secondary btn-stats">Stats</a>
+                    <a href="/pages/stats/${link.shortCode}" class="btn btn-secondary btn-stats">Stats</a>
                     <button class="btn btn-delete" data-code="${link.shortCode}">Delete</button>
                 </td>
             </tr>
