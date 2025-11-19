@@ -4,6 +4,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const { PrismaClient } = require('@prisma/client');
 const crypto = require('crypto');
+const path = require('path');
 
 // --- Configuration & Initialization ---
 dotenv.config();
@@ -12,13 +13,16 @@ const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Define the absolute path to the 'public' directory
+const publicPath = path.join(__dirname, 'public');
+
 // Regular Expression for URL validation (basic check for http/https protocol)
 const URL_REGEX = /^https?:\/\/[^\s$.?#].[^\s]*$/i;
 // Regular Expression for short code validation: [A-Za-z0-9]{6,8} as required
 const CODE_REGEX = /^[A-Za-z0-9]{6,8}$/;
 
 // Middleware to serve static files from the 'public' directory
-app.use(express.static('public'));
+app.use(express.static(publicPath));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -28,13 +32,13 @@ app.use(express.json());
 // Serve the main dashboard page for the root URL
 app.get('/', (req, res) => {
     // This explicitly serves your main HTML file for the root path.
-    res.sendFile('index.html', { root: 'public' });
+    res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 // Route for the Stats Page (Must come before the API routes and the final redirect)
 app.get('/code/:code', (req, res) => {
     // We serve the stats.html file for this path
-    res.sendFile('stats.html', { root: 'public' });
+    res.sendFile(path.join(publicPath, 'stats.html'));
 });
 
 // --- Helper Functions ---
