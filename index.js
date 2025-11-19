@@ -221,8 +221,14 @@ app.get('/:code', async (req, res) => {
 
 
 // Start the server
+
+// Start the server if not in a serverless environment (like Vercel)
+if (process.env.NODE_ENV !== 'production') {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`Dashboard available at http://localhost:${PORT}/`);
-    console.log(`Health Check at http://localhost:${PORT}/healthz`);
 });
+}
+module.exports = app;
+
+module.exports = app;
