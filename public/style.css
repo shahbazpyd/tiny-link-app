@@ -108,6 +108,7 @@ input{
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
+    text-decoration: none;
 }
 
 .btn-primary {
@@ -149,7 +150,7 @@ input{
 
 .links-table th,
 .links-table td {
-    padding: 12px 15px;
+    /* padding: 12px 15px; */
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
@@ -196,6 +197,29 @@ input{
 
 .copy-btn:hover {
     color: var(--primary-color);
+}
+
+/* Add to public/style.css */
+
+.btn-secondary {
+    background-color: #6c757d; /* A neutral grey */
+    color: white;
+    /* margin-right: 5px; Add some spacing between buttons */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-stats {
+    /* Specific styles for the stats button if needed, e.g., a different color */
+    background-color: #17a2b8; /* A light blue/info color */
+    padding: 6px 10px;
+    font-size: 0.85rem
+}
+
+.btn-stats:hover {
+    background-color: #138496;
 }
 
 /* Responsive Table Design */

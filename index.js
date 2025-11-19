@@ -31,6 +31,11 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
+// Route for the Stats Page (Must come before the API routes and the final redirect)
+app.get('/code/:code', (req, res) => {
+    // We serve the stats.html file for this path
+    res.sendFile('stats.html', { root: 'public' });
+});
 
 // --- Helper Functions ---
 
