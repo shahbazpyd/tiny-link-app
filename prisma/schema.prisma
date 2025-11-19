@@ -6,10 +6,19 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+
+model Link {
+  shortCode     String    @id @db.VarChar(8) // Matches [A-Za-z0-9]{6,8} max length
+  targetUrl     String
+  totalClicks   Int       @default(0)
+  lastClickedAt DateTime? // Optional/nullable, as no clicks have happened initially
+  createdAt     DateTime  @default(now())
 }
