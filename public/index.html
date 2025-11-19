@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TinyLink Dashboard</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <header>
         <div class="container">
             <h1><a href="/">🔗 TinyLink Dashboard</a></h1>
@@ -17,10 +19,26 @@
     <main>
         <div class="container">
             <h2>Short Link Management</h2>
-            
+
             <section id="link-creation" class="card">
                 <h3>Create New Link</h3>
-                <p>Form component will be rendered here.</p>
+                <form id="create-link-form">
+                    <div class="form-group">
+                        <label for="targetUrl">Long URL</label>
+                        <input type="url" id="targetUrl" name="targetUrl" placeholder="e.g., https://very.long.url/..."
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customCode">Custom Code (Optional, 6-8 chars)</label>
+                        <input type="text" id="customCode" name="customCode" pattern="[A-Za-z0-9]{6,8}" maxlength="8"
+                            placeholder="e.g., mylink123">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Shorten URL</button>
+
+                    <p id="message" class="message" style="display: none;"></p>
+                </form>
             </section>
 
             <section id="link-list" class="card">
@@ -38,6 +56,7 @@
         </div>
     </footer>
 
-    <script src="app.js"></script> 
+    <script src="app.js"></script>
 </body>
+
 </html>
