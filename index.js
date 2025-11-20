@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 // Route for the Stats Page (Must come before the API routes and the final redirect)
-app.get('/pages/stats/:code', (req, res) => {
+app.get('/code/:code', (req, res) => {
     // We serve the stats.html file for this path
     res.sendFile(path.join(publicPath, 'stats.html'));
 });
